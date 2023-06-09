@@ -1,0 +1,63 @@
+#root {
+    width: 50%;
+    margin: auto;
+}
+body {
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input__Collection {
+    margin: 1rem;
+    border-radius: 10px;
+}
+.input__Collection .form__ {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+.input__Collection div input,
+.input__Collection div textarea,
+.userList {
+    font-size: 1.3rem;
+    font-style: inherit;
+    margin: 10px;
+    width: 50%;
+    padding: 10px 20px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+button {
+    width: 40%;
+    margin: auto;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+label {
+    margin: 10px;
+    font-weight: bold;
+}
+.posts__ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.single__post {
+    border: 1px solid black;
+    padding: 10px 20px;
+    text-align: left;
+}
+/* .userList {
+    width: 50%;
+    margin: auto;
+} */
