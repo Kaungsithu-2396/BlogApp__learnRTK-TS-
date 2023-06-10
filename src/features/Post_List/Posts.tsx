@@ -1,11 +1,17 @@
-import { useAppSelector } from "../../app/Hooks";
+import { useAppSelector, useAppDispatch } from "../../app/Hooks";
 import Author from "./Author";
-
+import Reactions from "./Reactions";
 import PostInputForm from "./post__inputForm";
 import { postsType, selectAllPosts } from "./PostSlice";
+import { loadAllPosts } from "./PostSlice";
+import { useEffect } from "react";
 
 function Posts() {
     const posts = useAppSelector(selectAllPosts);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(loadAllPosts());
+    }, []);
     console.log(posts);
     return (
         <div>
@@ -18,8 +24,11 @@ function Posts() {
                                 <h2> {el.title}</h2>
                                 <h1>{el.body}</h1>
                                 <h3>
-                                    Author by <Author authorName={el.author} />{" "}
+                                    Author by <Author authorId={el.userId} />{" "}
                                 </h3>
+                                <div className="">
+                                    <Reactions {...el} />
+                                </div>
                             </div>
                         );
                     })}

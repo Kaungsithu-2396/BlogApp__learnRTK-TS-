@@ -1,7 +1,8 @@
 import { useAppSelector } from "../../app/Hooks";
-import { selectAllUsers } from "../users/userSlice";
-export default function Author({ authorName }: { authorName: string| undefined }) {
+import { selectAllUsers, userData } from "../users/userSlice";
+
+export default function Author({ authorId }: { authorId: number | undefined }) {
     const userLists = useAppSelector(selectAllUsers);
-    const findUser = userLists.find((el) => el.name == authorName);
+    const findUser = userLists.find((el: userData) => el.id == authorId);
     return <span>{findUser ? findUser.name : "unknown"}</span>;
 }
