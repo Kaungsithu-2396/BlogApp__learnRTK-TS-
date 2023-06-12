@@ -6,6 +6,7 @@ export default function PostInputForm() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [body, setBody] = useState("");
+    const [addRequestStatus, setAddRequestStatus] = useState("idle");
     const dispatch = useAppDispatch();
     const handleTitleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
@@ -13,9 +14,24 @@ export default function PostInputForm() {
     const handleBodyChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setBody(e.target.value);
     };
+    const onSave =
+        [title, author, body].every(Boolean) && addRequestStatus === "idle";
+
     const postAddHandler = (title: string, body: string, author: string) => {
-        dispatch(addPost(title, body, author));
+        if (onSave) {
+            try {
+                setAddRequestStatus("succeeded");
+                dispatch(addPost(title, body, author));
+                setTitle("");
+                setAuthor("");
+                setBody("");
+                console.log(author);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     };
+
     return (
         <>
             <div className="input__Collection">
@@ -41,7 +57,10 @@ export default function PostInputForm() {
                         onChange={handleBodyChange}
                         placeholder="body"
                     />
-                    <button onClick={() => postAddHandler(title, body, author)}>
+                    <button
+                        disabled={!onSave}
+                        onClick={() => postAddHandler(title, body, author)}
+                    >
                         Save
                     </button>
                 </div>

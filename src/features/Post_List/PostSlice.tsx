@@ -92,11 +92,12 @@ const postSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(loadAllPosts.pending, () => {
-                console.log("loading...");
+            .addCase(loadAllPosts.pending, (state: AsyncStateDetect) => {
+                state.status = "loading";
             })
             .addCase(loadAllPosts.fulfilled, (state, action) => {
-                const loadedPost = action.payload.map((el: any) => {
+                state.status = "succeeded";
+                const loadedPost = action.payload.map((el: postsType) => {
                     el.reactions = {
                         thumbsUp: 0,
                         love: 0,

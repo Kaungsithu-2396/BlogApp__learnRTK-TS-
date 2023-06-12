@@ -2,17 +2,18 @@ import { useAppSelector, useAppDispatch } from "../../app/Hooks";
 import Author from "./Author";
 import Reactions from "./Reactions";
 import PostInputForm from "./post__inputForm";
-import { postsType, selectAllPosts } from "./PostSlice";
+import { postsType, selectAllPosts, selectStatus } from "./PostSlice";
 import { loadAllPosts } from "./PostSlice";
 import { useEffect } from "react";
 
 function Posts() {
     const posts = useAppSelector(selectAllPosts);
+
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(loadAllPosts());
     }, []);
-    console.log(posts);
+
     return (
         <div>
             <PostInputForm />
